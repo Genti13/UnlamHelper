@@ -1,0 +1,4 @@
+.preguta-check:hover{
+    cursor: pointer;
+    background-color: var(--miel-teal) !important;
+}

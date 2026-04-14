@@ -42,3 +42,28 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Capacitor / Android
+android/build/
+android/app/build/
+android/.gradle/
+android/.idea/
+android/local.properties
+android/app/src/main/assets/public/
+android/app/src/main/assets/capacitor.plugins.json
+
+# Binarios (Las APKs que generes)
+*.apk
+*.aar
+
+# iOS / Xcode
+ios/App/build/
+ios/App/DerivedData/
+ios/App/.bundle/
+ios/App/App.xcworkspace/xcuserdata/
+ios/App/App.xcodeproj/project.xcworkspace/
+ios/App/App.xcodeproj/xcuserdata/
+
+# CocoaPods (Gestor de dependencias de iOS)
+ios/App/Pods/
+ios/App/Podfile.lock

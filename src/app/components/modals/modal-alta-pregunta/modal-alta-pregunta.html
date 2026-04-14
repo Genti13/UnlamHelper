@@ -1,0 +1,76 @@
+<div class="modal-header bg-miel-teal text-white py-2 border-secondary">
+    <h6 class="modal-title fw-bold">Cargar Pregunta Multiple Choice</h6>
+    <button type="button" class="btn-close btn-close-white" (click)="activeModal.dismiss()"></button>
+</div>
+
+<div class="modal-body bg-dark text-white">
+    <form [formGroup]="formPregunta">
+        <div class="mb-3">
+            <label class="form-label small fw-bold">Tema</label>
+            <input type="text" class="form-control form-control-sm" formControlName="tema">
+        </div>
+        <div class="mb-2">
+            <label class="form-label small fw-bold">Enunciado</label>
+            <textarea class="form-control form-control-sm" formControlName="enunciado"></textarea>
+        </div>
+
+        <h6 class="mt-4 mb-2">Opciones (Máximo 5)</h6>
+
+        <div formArrayName="opciones">
+            @for (opcion of opcionesArray.controls; track opcion) {
+            <div [formGroupName]="$index"
+                class="input-group mb-2 opcion-item border border-secondary rounded overflow-hidden shadow-sm bg-dark">
+
+                <input type="radio" class="btn-check" [id]="'radio-opc-' + $index" [value]="opcion.get('id')?.value"
+                    [checked]="formPregunta.get('correctaId')?.value === opcion.get('id')?.value"
+                    (change)="formPregunta.get('correctaId')?.setValue(opcion.get('id')?.value)" name="correctaIdGroup">
+
+                <label
+                    class="input-group-text bg-transparent border-0 d-flex align-items-center justify-content-center preguta-check"
+                    [for]="'radio-opc-' + $index" style="width: 50px;">
+
+                    @if (formPregunta.get('correctaId')?.value === opcion.get('id')?.value) {
+                    <i class="fa-solid fa-check text-success fs-5 pregunta-check"></i>
+                    }
+                    @else {
+                    <i class="fa-solid fa-x text-danger fs-5 pregunta-check"></i>
+                    }
+
+                </label>
+
+                <input type="text" class="form-control bg-transparent text-white border-0 py-2 opcion-texto shadow-none"
+                    placeholder="Escribir opción..." formControlName="texto">
+
+                @if (opcionesArray.length > 1) {
+                <button type="button" class="btn btn-outline-danger border-0 px-3" (click)="borrarOpcion($index)">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+                }
+            </div>
+            }
+        </div>
+
+        <div class="d-flex justify-content-start mt-2">
+            @if (opcionesArray.length < 5) { <button type="button" class="btn btn-success btn-sm py-0"
+                (click)="agregarOpcion()">
+                <i class="fa-solid fa-plus"></i> Agregar Opción
+                </button>
+                }
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer border-secondary bg-dark">
+    <div>
+        @if (preguntaExistente) {
+        <button type="button" class="btn btn-outline-danger btn-sm px-3" (click)="eliminar()">
+            <i class="fa-solid fa-trash me-1"></i> Eliminar
+        </button>
+        }
+    </div>
+
+    <button type="button" class="btn btn-teal btn-sm px-4" (click)="guardar()"
+        [disabled]="formPregunta.invalid || enviando">
+        {{ preguntaExistente ? 'Guardar Cambios' : 'Guardar Pregunta' }}
+    </button>
+</div>

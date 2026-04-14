@@ -1,1 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
+/* --- Variables y Base --- */
+:root {
+    --miel-teal: #128268;
+    --miel-bg-black: #121212;
+    --miel-card-bg: #262626;
+    --miel-border: #333333;
+}
+
+body {
+    background-color: var(--miel-bg-black) !important;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Botones genéricos de tu tema */
+.btn-teal {
+    background-color: var(--miel-teal);
+    color: white;
+    border: none;
+}
+
+.btn-miel-top {
+    background-color: #222;
+    color: #aaa;
+    border: 1px solid #333;
+}
+
+.bg-miel-teal{
+    background-color: var(--miel-teal);
+}
+
+.bg-miel-gray{
+    background-color: var(--miel-card-bg);
+}
+
+/* --- Estructura Global de Modales (ng-bootstrap) --- */
+.modal-content {
+    background-color: #121212;
+    border: 1px solid #333;
+    border-radius: 8px;
+}
+
+.modal-header {
+    border-bottom: 1px solid #222;
+}
+
+.modal-footer {
+    border-top: 1px solid #222;
+}

@@ -1,0 +1,60 @@
+<div class="container mt-4 mb-5 text-white">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Examen: {{ materiaNombre() }}</h2>
+        <button class="btn btn-outline-light btn-sm" (click)="volver()">Volver</button>
+    </div>
+
+    @if (resultado()) {
+    <div class="alert shadow-lg mb-4"
+        [ngClass]="resultado()!.correcta >= (resultado()!.total * 0.6) ? 'alert-success' : 'alert-danger'">
+        <h4 class="alert-heading">¡Examen Finalizado!</h4>
+        <p class="fs-5">Acertaste <strong>{{ resultado()?.correcta }}</strong> de <strong>{{ resultado()?.total
+                }}</strong> preguntas.</p>
+        <hr>
+        <button class="btn btn-dark" (click)="resultado.set(null); volver()">Cerrar Simulación</button>
+    </div>
+    }
+
+    <div class="exam-container">
+        @for (pregunta of preguntasExamen(); track pregunta.id; let i = $index) {
+        <div class="card bg-dark border-secondary mb-4 shadow">
+            <div class="card-header border-secondary bg-miel-teal">
+                <strong>Pregunta {{ i + 1 }}</strong> <span class="text-white ms-2 small">({{ pregunta.tema
+                    }})</span>
+            </div>
+            <div class="card-body bg-miel-gray">
+                <p class="fs-5 mb-4">{{ pregunta.enunciado }}</p>
+
+                <div class="options-list">
+                    @for (opcion of pregunta.opciones; track opcion.id) {
+                    <div class="form-check mb-3 p-0">
+                        <input class="btn-check" type="radio" [name]="'pregunta-' + pregunta.id"
+                            [id]="'opc-' + pregunta.id + '-' + opcion.id" [(ngModel)]="respuestasUsuario[pregunta.id]"
+                            [value]="opcion.id" [disabled]="resultado() !== null">
+
+                        <label class="opcion-label w-100 text-start py-2 px-3 rounded shadow-sm"
+                            [for]="'opc-' + pregunta.id + '-' + opcion.id" [ngClass]="{
+                 'resultado-correcta': resultado() && opcion.id === pregunta.correctaId,
+                 'resultado-incorrecta': resultado() && respuestasUsuario[pregunta.id] === opcion.id && opcion.id !== pregunta.correctaId
+               }">
+                            <span class="fw-bold me-2">{{ opcion.id }}.</span> {{ opcion.texto }}
+                        </label>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+        }
+
+
+        @if (!resultado()) {
+        <div class="d-grid gap-2 mt-5">
+            <button class="btn btn-teal btn-lg shadow" (click)="finalizarExamen()" [disabled]="resultado() !== null">
+                Finalizar y Ver Resultado
+            </button>
+        </div>
+        }
+
+
+    </div>
+</div>

@@ -1,0 +1,38 @@
+/* Contenedor de la opción */
+.opcion-label {
+    background-color: #2b2b2b; /* Un gris muy oscuro para que resalte sobre el bg-miel-gray */
+    color: #e0e0e0;
+    border: 1px solid #444;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+/* Hover: Le damos un brillo teal suave */
+.opcion-label:hover {
+    background-color: #353535;
+    border-color: #20c997; /* Teal */
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Cuando el radio button está seleccionado (antes de terminar) */
+.btn-check:checked + .opcion-label {
+    background-color: rgba(32, 201, 151, 0.1); /* Fondo teal muy sutil */
+    border-color: #20c997; /* Borde teal brillante */
+    color: #20c997;
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(32, 201, 151, 0.3);
+}
+
+/* Estados de resultados (Finalizado) */
+.resultado-correcta {
+    background-color: rgba(25, 135, 84, 0.2) !important;
+    border-color: #198754 !important;
+    color: #75f0a0 !important;
+}
+
+.resultado-incorrecta {
+    background-color: rgba(220, 53, 69, 0.2) !important;
+    border-color: #dc3545 !important;
+    color: #ff8a94 !important;
+}

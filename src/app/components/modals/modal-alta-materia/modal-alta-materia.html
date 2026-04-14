@@ -1,0 +1,32 @@
+<div class="modal-header bg-miel-teal text-white py-2 border-secondary">
+    <h6 class="modal-title fw-bold">Nueva Materia</h6>
+    <button type="button" class="btn-close btn-close-white" (click)="activeModal.dismiss('Cierre forzado')"></button>
+</div>
+
+<div class="modal-body bg-dark text-white">
+    <form [formGroup]="formAlta">
+        <div class="mb-3">
+            <label class="form-label small fw-bold">Nombre</label>
+            <input type="text" 
+                   class="form-control form-control-sm" 
+                   formControlName="nombre" 
+                   required>
+        </div>
+        <div class="mb-0">
+            <label class="form-label small fw-bold">Código / Comisión</label>
+            <input type="text" 
+                   class="form-control form-control-sm" 
+                   formControlName="codigo" 
+                   placeholder="Ej: 2633 - Com: 01-2939">
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer border-secondary bg-dark">
+    <button type="button" 
+            class="btn btn-teal btn-sm px-4" 
+            (click)="guardar()" 
+            [disabled]="formAlta.invalid">
+        Aceptar
+    </button>
+</div>

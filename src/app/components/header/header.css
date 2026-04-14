@@ -1,0 +1,13 @@
+.navbar-miel-green {
+    background-color: var(--miel-teal);
+}
+
+.text-teal {
+    color: white;
+    height: 3rem;
+}
+
+.text-teal:hover {
+    background-color: #10755e;
+    cursor: pointer;
+}
