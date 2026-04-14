@@ -1,59 +1,72 @@
-# UnlamHelper
+# 🎓 UnlamHelper - Mobile App (Angular + Capacitor)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+Este repositorio contiene la aplicación UnlamHelper, una herramienta diseñada para estudiantes de la UNLaM, desarrollada con Angular 17 y Capacitor. Esta guía detalla los pasos técnicos para clonar, configurar y regenerar el proyecto para Android.
 
-## Development server
+---
 
-To start a local development server, run:
+## 📋 Requisitos Previos
 
-```bash
-ng serve
-```
+Asegúrate de tener instalado el siguiente entorno antes de empezar:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+| Herramienta | Versión Sugerida |
+| :--- | :--- |
+| Node.js | LTS (v20+) |
+| Angular CLI | v17 o superior |
+| Android Studio | Ladybug / 2024.2.1+ |
+| Capacitor CLI | v6+ |
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🚀 Guía de Instalación Rápida
 
-```bash
-ng generate component component-name
-```
+Si acabas de clonar el repositorio, ejecutá estos comandos en orden:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 1. Instalación de Dependencias
+Descarga todos los paquetes necesarios del package.json.
+$ npm install
 
-```bash
-ng generate --help
-```
+### 2. Generar el Build de Angular
+Compila la aplicación web. Capacitor utilizará estos archivos para "envolverlos" en la app nativa.
+$ ng build
 
-## Building
+[IMPORTANTE]
+El archivo capacitor.config.ts está configurado para buscar el código en:
+dist/unlamHelper/browser/. Asegúrate de que esa carpeta exista tras el build.
 
-To build the project run:
+### 3. Sincronizar con Capacitor
+Vincula el código compilado con la plataforma nativa y actualiza los plugins.
+$ npx cap sync android
 
-```bash
-ng build
-```
+### 4. Abrir en Android Studio
+Lanza el IDE para la compilación final del archivo APK.
+$ npx cap open android
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 📱 Generación de la APK
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Una vez dentro de Android Studio:
 
-```bash
-ng test
-```
+1. Gradle Sync: Esperá a que termine el proceso (revisa la barra de progreso inferior).
+2. Build APK: Menú Build > Build Bundle(s) / APK(s) > Build APK(s).
+3. Locate: Al finalizar, aparecerá un aviso. Hacé clic en Locate para obtener tu archivo app-debug.apk.
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## 🎨 Personalización (Branding)
 
-```bash
-ng e2e
-```
+Para cambiar la identidad de la app:
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+* Nombre de la App: Editalo en android/app/src/main/res/values/strings.xml (parámetro app_name).
+* Iconos: Colocá tu logo de 1024x1024px en la carpeta /assets y ejecutá:
+  $ npx capacitor-assets generate --android
 
-## Additional Resources
+---
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🛠️ Comandos de Mantenimiento
+
+* Build + Sync rápido: ng build && npx cap copy android
+* Limpiar compilación de Android: ./gradlew clean (dentro de la carpeta /android)
+* Verificar cambios en tiempo real: npx cap run android -l --external
+
+[TIP] Recordatorio de Seguridad: No subas el archivo local.properties al repositorio, ya que contiene rutas absolutas de tu SDK local. Revisa siempre que el .gitignore esté activo.
