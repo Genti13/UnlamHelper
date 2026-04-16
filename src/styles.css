@@ -47,3 +47,57 @@ body {
 .modal-footer {
     border-top: 1px solid #222;
 }
+
+/* Contenedor de iconos */
+.miel-icon-container {
+    border-top: 1px solid #333; /* Una línea divisoria sutil en mobile */
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+@media (min-width: 992px) {
+    .miel-icon-container {
+        border-top: none;
+        padding-top: 0;
+    }
+}
+
+/* Ajuste de los stacks de iconos */
+.miel-icon-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 6rem;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.miel-icon-stack:hover{
+    background-color:#333333;
+}
+
+.miel-icon-stack i {
+    font-size: 1.2rem;
+}
+
+.miel-icon-stack span {
+    font-size: 0.65rem; /* Letra bien chica en mobile */
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #aaa;
+    margin-top: 4px;
+    white-space: nowrap; /* Evita que el texto salte de línea */
+}
+
+@media (min-width: 768px) {
+    .miel-icon-stack span {
+        font-size: 0.8rem; /* Letra un poco más grande en desktop */
+    }
+    .miel-icon-stack i {
+        font-size: 1.5rem;
+    }
+}
+
+.fs-btn{
+    font-size: 0.7rem;
+}

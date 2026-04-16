@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalAltaPreguntaComponent } from '../modals/modal-alta-pregunta/modal-alta-pregunta';
 import { ModalVerPreguntasComponent } from '../modals/modal-ver-preguntas/modal-ver-preguntas';
 import { Router } from '@angular/router';
+import { Materia } from '../../models/materia';
 
 @Component({
   selector: 'app-materias-list',
@@ -27,8 +28,12 @@ export class MateriasListComponent {
     // Le pasamos el ID al modal antes de que se dibuje
     modalRef.componentInstance.materiaId = materiaId;
   }
-  
+
   irASimulacion(materiaId: string) {
     this.router.navigate(['/simular-examen', materiaId]);
+  }
+
+  exportarMateria(materia: Materia) {
+    this.materiasService.exportarMateria(materia);
   }
 }

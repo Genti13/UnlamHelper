@@ -118,4 +118,37 @@ export class MateriasService {
     // Buscamos dentro del Signal el objeto que coincida con el ID
     return this.materiasSignal().find(m => m.id === id);
   }
+
+  importarMateria(materiaJson: Materia) {
+    this.materiasSignal.update(materias => {
+      // Le generamos un ID nuevo para evitar colisiones
+      const nuevaMateria: Materia = {
+        ...materiaJson,
+        id: 'mat-' + Date.now(),
+        // También podríamos resetear los IDs de las preguntas si quisiéramos ser ultra pro
+      };
+      return [...materias, nuevaMateria];
+    });
+  }
+
+  exportarMateria(materia: Materia) {
+    // 1. Procesamiento de la data
+    const dataStr = JSON.stringify(materia, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+
+    // 2. Lógica de descarga (encapsulada acá)
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+
+    // Limpiamos el nombre para que no rompa en el sistema de archivos
+    const nombreArchivo = materia.nombre.toLowerCase().replace(/\s+/g, '_');
+    link.download = `materia_${nombreArchivo}.json`;
+
+    // Ejecutamos
+    link.click();
+
+    // Limpieza de memoria
+    window.URL.revokeObjectURL(url);
+  }
 }
