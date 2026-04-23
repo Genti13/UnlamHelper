@@ -65,4 +65,38 @@
         </div>
         }
     </div>
+
+    <div class="row g-2">
+    @for (materia of materiasService.materiasSignal(); track materia.id) {
+        }
+</div>
+
+@if (materiasService.totalMaterias() > 10) {
+<div class="d-flex justify-content-center mt-4">
+    <nav>
+        <ul class="pagination pagination-sm">
+            <li class="page-item" [class.disabled]="materiasService.paginaActual() === 1">
+                <button class="page-link bg-dark border-secondary text-white" 
+                        (click)="materiasService.cambiarPagina(materiasService.paginaActual() - 1)">
+                    Anterior
+                </button>
+            </li>
+            
+            <li class="page-item active">
+                <span class="page-link bg-teal border-teal text-white">
+                    Página {{ materiasService.paginaActual() }}
+                </span>
+            </li>
+
+            <li class="page-item" 
+                [class.disabled]="(materiasService.paginaActual() * 10) >= materiasService.totalMaterias()">
+                <button class="page-link bg-dark border-secondary text-white" 
+                        (click)="materiasService.cambiarPagina(materiasService.paginaActual() + 1)">
+                    Siguiente
+                </button>
+            </li>
+        </ul>
+    </nav>
+</div>
+}
 </main>

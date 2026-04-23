@@ -25,7 +25,7 @@ export class ModalVerPreguntasComponent {
 
   // Computado que busca la materia actual en la base de datos
   materiaActiva = computed(() => {
-    return this.materiasService.buscarMateria(this.materiaId);
+    return this.materiasService.obtenerMateriaPorId(this.materiaId);
   });
 
   // Computado que filtra las preguntas automáticamente cuando el usuario escribe

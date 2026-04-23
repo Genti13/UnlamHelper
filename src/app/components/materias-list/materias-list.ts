@@ -72,6 +72,9 @@ export class MateriasListComponent {
             alert('Hubo un error al intentar eliminar la materia.');
           });
       }
+
+      // En eliminarMateria o importarMateria, después de la operación exitosa:
+      this.materiasService.cargarMaterias();
     }).catch((razon) => {
       // Si entra acá, es porque hizo clic en "Cancelar", en la X, o apretó ESC.
       // No hacemos nada, simplemente el modal se cierra.
@@ -85,5 +88,5 @@ export class MateriasListComponent {
     this.materiasService.buscarMateriasPorTexto(termino);
   }
 
- 
+
 }

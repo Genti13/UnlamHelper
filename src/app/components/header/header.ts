@@ -19,32 +19,7 @@ export class HeaderComponent {
   abrirModalAlta() {
     this.modalService.open(ModalAltaMateriaComponent, { centered: true, backdrop: 'static' });
   }
-  /*
-    async importarMateria() {
-      try {
-        // Esto abre el selector nativo del sistema operativo directamente
-        const [fileHandle] = await (window as any).showOpenFilePicker({
-          types: [{
-            description: 'Archivos JSON de Materias',
-            accept: { 'application/json': ['.json'] }
-          }],
-          multiple: false
-        });
-  
-        const file = await fileHandle.getFile();
-        const contenidoStr = await file.text();
-        const contenido = JSON.parse(contenidoStr);
-  
-        if (contenido.nombre && Array.isArray(contenido.preguntas)) {
-          this.materiasService.importarMateria(contenido);
-          alert('¡Materia importada con éxito!');
-        }
-      } catch (err) {
-        // Si el usuario cancela la selección, entra por acá
-        console.log('Selección cancelada o error:', err);
-      }
-    }*/
-
+ 
   async iniciarImportacion() {
     if (Capacitor.getPlatform() !== 'web') {
       // ======== MODO CELULAR (NATIVO) ========
@@ -57,7 +32,7 @@ export class HeaderComponent {
         });
 
         const archivo = result.files[0];
-        if (!archivo || !archivo.path ) return;
+        if (!archivo || !archivo.path) return;
 
         // 2. Leemos el archivo usando Filesystem de Capacitor
         const contenido = await Filesystem.readFile({
@@ -109,5 +84,7 @@ export class HeaderComponent {
 
       input.click();
     }
+    // En eliminarMateria o importarMateria, después de la operación exitosa:
+    this.materiasService.cargarMaterias();
   }
 }
