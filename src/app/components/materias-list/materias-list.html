@@ -8,34 +8,49 @@
 
         <div class="col-md-12">
             <div class="card miel-card p-3 shadow-sm">
-                <div class="d-flex align-items-center flex-wrap">
+                
+                <div class="row g-0 align-items-center">
 
-                    <div class="col-md-4 col-sm-8 col-lg-2">
-                        <h5 class="mb-1 text-white text-truncate" style="max-width: 200px;">{{ materia.nombre }}</h5>
+                    <div class="col-8 col-lg-3 order-1 text-start pe-2">
+                        <h5 class="mb-1 text-white text-truncate">{{ materia.nombre }}</h5>
                         <small class="text-secondary">{{ materia.codigo }}</small>
                     </div>
 
-                    <div class="miel-icon-container col-md-7 col-sm-3 col-lg-9">
-                        <div class="miel-icon-stack cursor-pointer py-2" (click)="abrirModalAltaPregunta(materia.id)">
-                            <i class="fa-solid fa-circle-plus"></i>
-                            <p class="mt-2 fs-btn m-0 fs-btn">Nueva Pregunta</p>
-                        </div>
+                    <div class="col-4 col-lg-2 order-2 order-lg-3 d-flex gap-2 justify-content-end">
+                        <button class="btn btn-sm btn-outline-info border-0 px-2 py-1"
+                            (click)="abrirModalEditar(materia)" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger border-0 px-2 py-1"
+                            (click)="eliminarMateria(materia)" title="Eliminar">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
 
-                        <div class="miel-icon-stack cursor-pointer py-2" (click)="abrirModalVerPreguntas(materia.id)">
-                            <i class="fa-solid fa-file-lines"></i>
-                            <p class="mt-2 fs-btn m-0">Ver Preguntas</p>
-                        </div>
+                    <div class="col-12 col-lg-7 order-3 order-lg-2 mt-3 mt-lg-0">
+                        <div class="d-flex gap-2 gap-lg-4">
+                            
+                            <div class="miel-icon-stack cursor-pointer py-2 text-center" (click)="abrirModalAltaPregunta(materia.id)">
+                                <i class="fa-solid fa-circle-plus"></i>
+                                <p class="mt-2 fs-btn m-0">Nueva Pregunta</p>
+                            </div>
 
-                        <div class="miel-icon-stack cursor-pointer py-2" (click)="irASimulacion(materia.id)">
-                            <i class="fa-solid fa-circle-play"></i>
-                            <p class="mt-2 fs-btn m-0">Simular Examen</p>
-                        </div>
+                            <div class="miel-icon-stack cursor-pointer py-2 text-center" (click)="abrirModalVerPreguntas(materia.id)">
+                                <i class="fa-solid fa-file-lines"></i>
+                                <p class="mt-2 fs-btn m-0">Ver Preguntas</p>
+                            </div>
 
-                        <div class="miel-icon-stack cursor-pointer py-2" (click)="exportarMateria(materia)">
-                             <i class="fa-solid fa-file-export"></i>
-                            <p class="mt-2 fs-btn m-0">Exportar a JSON</p>
-                        </div>
+                            <div class="miel-icon-stack cursor-pointer py-2 text-center" (click)="irASimulacion(materia.id)">
+                                <i class="fa-solid fa-circle-play"></i>
+                                <p class="mt-2 fs-btn m-0">Simular Examen</p>
+                            </div>
 
+                            <div class="miel-icon-stack cursor-pointer py-2 text-center" (click)="exportarMateria(materia)">
+                                <i class="fa-solid fa-file-export"></i>
+                                <p class="mt-2 fs-btn m-0">Exportar a JSON</p>
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
@@ -43,9 +58,10 @@
         </div>
 
         } @empty {
-        <div class="col-12">
-            <p class="text-secondary">No hay materias cargadas. Hacé clic en "Alta Materia" en el menú para arrancar.
-            </p>
+        <div class="col-12 text-center py-5 mt-4">
+            <i class="fa-solid fa-folder-open text-secondary mb-3 opacity-50" style="font-size: 3rem;"></i>
+            <h5 class="text-secondary">No hay materias cargadas</h5>
+            <p class="text-secondary opacity-75">Hacé clic en "Alta Materia" en el menú superior o importá un archivo JSON para comenzar.</p>
         </div>
         }
     </div>

@@ -1,5 +1,7 @@
 <div class="modal-header bg-miel-teal text-white py-2 border-secondary">
-    <h6 class="modal-title fw-bold">Nueva Materia</h6>
+    <h6 class="modal-title fw-bold">
+        {{ materiaAEditar ? 'Editar Materia' : 'Nueva Materia' }}
+    </h6>
     <button type="button" class="btn-close btn-close-white" (click)="activeModal.dismiss('Cierre forzado')"></button>
 </div>
 
@@ -8,16 +10,20 @@
         <div class="mb-3">
             <label class="form-label small fw-bold">Nombre</label>
             <input type="text" 
-                   class="form-control form-control-sm" 
+                   class="form-control form-control-sm bg-dark text-white border-secondary shadow-none" 
                    formControlName="nombre" 
+                   placeholder="Ej: Base de Datos"
                    required>
         </div>
-        <div class="mb-0">
-            <label class="form-label small fw-bold">Código / Comisión</label>
-            <input type="text" 
-                   class="form-control form-control-sm" 
-                   formControlName="codigo" 
-                   placeholder="Ej: 2633 - Com: 01-2939">
+        
+        <div class="row g-2 mb-0">
+            <div class="col-6">
+                <label class="form-label small fw-bold">Código</label>
+                <input type="text" 
+                       class="form-control form-control-sm bg-dark text-white border-secondary shadow-none" 
+                       formControlName="codigo" 
+                       placeholder="Ej: 2633">
+            </div>
         </div>
     </form>
 </div>
@@ -27,6 +33,6 @@
             class="btn btn-teal btn-sm px-4" 
             (click)="guardar()" 
             [disabled]="formAlta.invalid">
-        Aceptar
+        {{ materiaAEditar ? 'Guardar Cambios' : 'Aceptar' }}
     </button>
 </div>

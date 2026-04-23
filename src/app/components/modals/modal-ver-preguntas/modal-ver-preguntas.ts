@@ -9,8 +9,8 @@ import { Pregunta } from '../../../models/materia';
   selector: 'app-modal-ver-preguntas',
   standalone: true,
   imports: [FormsModule, NgbAccordionModule],
-  templateUrl: './modal-ver-preguntas.html',
-  styleUrl: './modal-ver-preguntas.css'
+  templateUrl: 'modal-ver-preguntas.html',
+  styleUrl: 'modal-ver-preguntas.css'
 })
 export class ModalVerPreguntasComponent {
   // Recibe el ID de la materia desde el MateriasListComponent

@@ -1,0 +1,20 @@
+<div class="modal-header bg-danger text-white py-2 border-secondary">
+    <h6 class="modal-title fw-bold">
+        <i class="fa-solid fa-triangle-exclamation me-2"></i> Confirmar Eliminación
+    </h6>
+    <button type="button" class="btn-close btn-close-white" (click)="cancelar()"></button>
+</div>
+
+<div class="modal-body bg-dark text-white text-center py-4">
+    <p class="mb-1 fs-5">¿Estás seguro de eliminar <strong>"{{ nombreElemento }}"</strong>?</p>
+    <p class="text-danger small mb-0">Esta acción también borrará todas sus preguntas y no se puede deshacer.</p>
+</div>
+
+<div class="modal-footer border-secondary bg-dark d-flex justify-content-between">
+    <button type="button" class="btn btn-outline-secondary btn-sm px-4" (click)="cancelar()">
+        Cancelar
+    </button>
+    <button type="button" class="btn btn-danger btn-sm px-4" (click)="confirmar()">
+        Sí, eliminar
+    </button>
+</div>
